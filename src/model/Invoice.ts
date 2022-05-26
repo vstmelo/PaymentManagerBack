@@ -1,4 +1,4 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("invoice", { schema: "mydb" })
 export class Invoice {
@@ -21,6 +21,9 @@ export class Invoice {
   @Column("int", { name: "user_id" })
   userId: number;
 
-  @Column("longtext", { name: "description", nullable: true })
+  @Column("varchar", { name: "description", nullable: true, length: 45 })
   description: string | null;
+
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 }

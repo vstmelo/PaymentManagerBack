@@ -18,9 +18,6 @@ export class User {
   })
   createTime: Date | null;
 
-  @Column("varchar", { name: "cpf", nullable: true, length: 45 })
-  cpf: string | null;
-
   @Column("varchar", { name: "phone", nullable: true, length: 45 })
   phone: string | null;
 
