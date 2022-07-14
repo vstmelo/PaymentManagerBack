@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 
 import IUserDTO from '../DTO/requests/UserDTO'
 
-import  UserService  from '../services/UserService';
+import UserService from '../services/UserService';
 
+const userService = new UserService();
 class UserController {
 
     async login(req: Request, res: Response): Promise<Response> {
 
-        const userService = new UserService();
 
         const { email, password }: IUserDTO = req.body;
 
@@ -17,7 +17,6 @@ class UserController {
 
     async getUser(req: Request, res: Response): Promise<Response> {
 
-        const userService = new UserService();
 
         const IUserDTO = req.params;
 
@@ -27,7 +26,6 @@ class UserController {
     };
 
     async createUser(req: Request, res: Response): Promise<Response> {
-        const userService = new UserService();
 
         const { email, username, password, phone } = req.body;
 
@@ -40,7 +38,8 @@ class UserController {
 
     async editUser(req: Request, res: Response): Promise<Response> {
         const { email, username, password, phone } = req.body;
-        const userService = new UserService();
+
+
         const id = req.params;
 
         const editedUser = await userService.editUser({
