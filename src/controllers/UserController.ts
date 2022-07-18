@@ -9,10 +9,11 @@ class UserController {
 
     async login(req: Request, res: Response): Promise<Response> {
 
+        const { email, password } = req.body;
 
-        const { email, password }: IUserDTO = req.body;
+        const token = await userService.login({ email, password })
 
-        return res.json('Logged')
+        return res.json(token);
     };
 
     async getUser(req: Request, res: Response): Promise<Response> {
@@ -29,11 +30,9 @@ class UserController {
 
         const { email, username, password, phone } = req.body;
 
-        const message: string = await userService.createuser({ email, username, password, phone });
+        const novouser = await userService.createuser({ ...req.body });
 
-        return res.json({
-            message: message
-        });
+        return res.json(novouser);
     };
 
     async editUser(req: Request, res: Response): Promise<Response> {

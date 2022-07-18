@@ -1,25 +1,35 @@
 
 import { UserRepository } from "../repositories/repositories";
 import IUserDTO from '../DTO/requests/UserDTO';
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcryptjs';
+const jwt = require('jsonwebtoken');
+const secret = require('../secret/index');
 export default class UserService {
     private saltRounds: number = 10;
-    async login({ email, password }: IUserDTO) {
 
+    async login({ email, password }: IUserDTO) {
+        
         const user = await UserRepository.findOneByOrFail({ email });
 
+        
         const error: Error = new Error("Wrong password or email");
 
-        if (!user) {
-            throw error;
-        }
-        
-        const validPass: boolean = bcrypt.compareSync(password, user.password);
-        
-        if (!validPass) {
 
-            throw error;
-        }
+        const validPass: boolean = bcrypt.compareSync(password, user.password);
+
+        if (!user || !validPass ) {
+            throw error; 
+        };
+ 
+         const token = jwt.sign({
+            id: user.id,
+            name: user.username,
+ 
+        }, secret, {
+            expiresIn: "3d"
+        });
+
+        return token;
     };
 
     async getUser(id: string): Promise<Object> {
@@ -38,7 +48,8 @@ export default class UserService {
     async createuser({ email, password, username, phone }: IUserDTO): Promise<string> {
 
         const existUser = await UserRepository.findOneBy({ email });
-
+        const hashPasswd: string = bcrypt.hashSync(password, this.saltRounds);
+       
         if (existUser) {
             throw new Error('Email already used.')
         }
@@ -46,14 +57,14 @@ export default class UserService {
         const user = UserRepository.create({
             username,
             email,
-            password,
+            password: hashPasswd,
             phone
         });
 
         await UserRepository.save(user);
 
         return 'User created successfully';
-    };
+    }; 
 
     async editUser({ id, email, password, username, phone }: IUserDTO): Promise<Object> {
 
@@ -68,7 +79,7 @@ export default class UserService {
             password,
             username,
             phone,
-
+ 
         });
 
         return userEdited;

@@ -1,9 +1,8 @@
 import { DataSource } from "typeorm";
 import "reflect-metadata";
-import 'dotenv/config'; 
-
+import "dotenv/config";
 import "mysql2";
-
+ 
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,
@@ -12,7 +11,7 @@ export const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     entities: [__dirname + "/model/*.{js,ts}"],  
-})
+}) 
 
 AppDataSource.initialize()
     .then(() => {

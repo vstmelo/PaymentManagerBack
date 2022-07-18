@@ -1,7 +1,7 @@
 export default interface ICreateUser {
     id? : number,
     email: string,
-    phone: string,
+    phone?: string,
     password: string,
-    username: string,
+    username?: string,
 }
