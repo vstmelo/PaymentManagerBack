@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import "reflect-metadata";
 import "dotenv/config";
-import "mysql2";
+import "mysql";
  
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -19,4 +19,4 @@ AppDataSource.initialize()
     })
     .catch((err) => {
         console.error("Error during Data Source initialization", err)
-    })
+    }) 

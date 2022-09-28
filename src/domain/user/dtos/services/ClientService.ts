@@ -1,5 +1,5 @@
-import { ClientRepository } from "../repositories/repositories"
-import ICreateClient from '../DTO/requests/ClientDTO'
+import { ClientRepository } from "../../../../repositories"
+import ICreateClient from '../requests/ClientDTO'
 
 
 export class ClientService {
