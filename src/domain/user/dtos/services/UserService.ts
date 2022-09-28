@@ -1,9 +1,10 @@
 
-import { UserRepository } from "../repositories/repositories";
-import IUserDTO from '../DTO/requests/UserDTO';
+import { UserRepository } from "../../../../repositories";
+import IUserDTO from '../requests/UserDTO';
 import bcrypt from 'bcryptjs';
-const jwt = require('jsonwebtoken');
-const secret = require('../secret/index');
+import * as jwt from 'jsonwebtoken';
+import secret from '../../../../secret/';
+
 export default class UserService {
     private saltRounds: number = 10;
 

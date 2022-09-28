@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-
-const secret = require('../secret/index');
-
-const jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
+import secret from '../../secret/';
 
 // forma abstrata de falar para o compilador que o objeto tera propriedades especificas
 
