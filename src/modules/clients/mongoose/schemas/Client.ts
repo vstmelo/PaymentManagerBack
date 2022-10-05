@@ -18,7 +18,10 @@ const clientSchema = new mongoose.Schema({
   cep: {
     type: String,
   },
-  createTime: {},
-  updateTime: {},
+  createAt: {
+    type: Date,
+    default: Date.now
+  },
+  updateAt: {},
 });
 export default mongoose.model('Client', clientSchema);
