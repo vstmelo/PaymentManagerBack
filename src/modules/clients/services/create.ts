@@ -1,11 +1,22 @@
-import Client from '../mongoose/schemas/Client';
+import { BadRequest } from '../../../shared/errors/BadRequest';
+import ClientDTO from '../infra/entities';
+import IClientRepository from '../repositories/IClient-repositoy';
 
 class CreateService {
-  async execute({ username, email }: any) {
-    const client = await (await Client.create({ username: username, email: email })).save();
-    
-    return client;
-  }
+
+  constructor(private clientRepository: IClientRepository) { }
+
+  async execute({ username, email }: ClientDTO) {
+
+
+    const clientExists = this.clientRepository.findByEmail(email);
+
+    if (clientExists) {
+      throw new BadRequest("Client already exists!");
+    }
+
+    this.clientRepository.create({ username: username, email: email });
+
+  } 
 }
 export default CreateService;
- 

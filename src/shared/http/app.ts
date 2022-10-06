@@ -1,13 +1,18 @@
 import express from 'express';
-import mongoose from 'mongoose'
-import contactRouter from '../../modules/clients/infra/http/routes';
+
+import clientRouter from '../../modules/clients/infra/http/routes';
+import cors from 'cors'
+import { ErrorHandler } from './../middleware/errorHandler';
+// import dbConnection from '../../mongoose/dbConnection';
+
+// dbConnection();
 
 const app = express()
-app.use(express.json())
-app.use(contactRouter)
 
-mongoose.connect('mongodb://localhost:27017/payment', () => {
-  console.log('connected to database')
-})
+app.use(cors())
+app.use(express.json())
+app.use(ErrorHandler);
+app.use(clientRouter)
+
 
 export default app;

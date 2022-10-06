@@ -6,7 +6,10 @@
   "author": "vmeelo <vinicius.melo@dcomp.ufs.br>",
   "license": "MIT",
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "@types/mongoose": "^5.11.97",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "mongoose": "^6.6.4"
   },

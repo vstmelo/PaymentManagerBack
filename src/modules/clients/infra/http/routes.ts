@@ -1,13 +1,31 @@
-import express from 'express'
-
-const contactRouter = express.Router();
-
+import express, { Request, Response } from 'express';
+import { BadRequest } from '../../../../shared/errors/BadRequest';
+import ClientRepository from '../../../../modules/clients/repositories/client-repository';
 import CreateService from '../../services/create';
 
-contactRouter.post('/api/payment', async (request, response) => {
-    const createClient = new CreateService();
+const clientRouter = express.Router();
+const clientRepository = new ClientRepository();
+
+clientRouter.post('/', async (request: Request, response: Response) => {
     const { username, email } = request.body;
-    const client = await createClient.execute({ username, email });
-    return response.json(client);
+    const createService = new CreateService(clientRepository);
+    createService.execute({ username: username, email: email });
+    return response.status(201).json({ message: 'Client created' });
 });
-export default contactRouter;
+
+clientRouter.get('/', async (request: Request, response: Response) => {
+    const all = clientRepository.list();
+    if(!all){
+        throw new BadRequest('Error to list clients');
+    }
+    return response.status(200).json(all);
+});
+
+clientRouter.get('/:email', async (request: Request, response: Response) => {
+    const { email } = request.params;
+    console.log(email)
+    const client = clientRepository.findByEmail(email);
+    return response.status(200).json(client);
+}); 
+
+export default clientRouter; 
