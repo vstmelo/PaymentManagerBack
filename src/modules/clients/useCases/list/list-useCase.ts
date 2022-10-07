@@ -5,12 +5,12 @@ class ListUseCase {
     constructor(private clientRespository: IClientRepository) {
     }
 
-    async execute(req: Request, res: Response) {
+    async execute(req: Request, res: Response): Promise<any | null> {
         const list = await this.clientRespository.list();
         if (!list) {
             return null
         };
-        return res.status(200).json(list);
+        return list;
     }
 
 }

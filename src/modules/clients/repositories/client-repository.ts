@@ -7,7 +7,7 @@ import IClientRepository from "./IClient-repositoy";
 
 class ClientRepository implements IClientRepository {
 
-    private client = new Array<ClientDTO>();
+    private client: ClientDTO[] =  [];
 
     constructor() {
         this.client = []
@@ -18,9 +18,8 @@ class ClientRepository implements IClientRepository {
         Object.assign(newClient, { username, email });
         this.client.push(newClient);
     };
-    list(): ClientDTO | null {
-        const all =  this.client.find(client => client);
-        
+    list(): ClientDTO[] | null {
+        const all =  this.client;
         if (!all) {
 
             return null;
