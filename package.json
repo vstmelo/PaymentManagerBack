@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:vstmelo/PaymentManagerBack.git",
-  "author": "vmeelo <vinicius.melo@dcomp.ufs.br>",
+  "author": "vmeelo <vstmelo@proton.me>",
   "license": "MIT",
   "dependencies": {
     "@types/cors": "^2.8.12",
@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
+    "mongo": "^0.1.0",
     "mongoose": "^6.6.4"
   },
   "devDependencies": {

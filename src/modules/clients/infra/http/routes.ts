@@ -1,17 +1,13 @@
 import express, { Request, Response } from 'express';
 import { BadRequest } from '../../../../shared/errors/BadRequest';
 import ClientRepository from '../../../../modules/clients/repositories/client-repository';
-import CreateService from '../../services/create';
+import ClientController from '../../useCases/create';
 
 const clientRouter = express.Router();
 const clientRepository = new ClientRepository();
+const clientController = new ClientController();
 
-clientRouter.post('/', async (request: Request, response: Response) => {
-    const { username, email } = request.body;
-    const createService = new CreateService(clientRepository);
-    createService.execute({ username: username, email: email });
-    return response.status(201).json({ message: 'Client created' });
-});
+clientRouter.post('/',clientController.handle );
 
 clientRouter.get('/', async (request: Request, response: Response) => {
     const all = clientRepository.list();
@@ -26,6 +22,6 @@ clientRouter.get('/:email', async (request: Request, response: Response) => {
     console.log(email)
     const client = clientRepository.findByEmail(email);
     return response.status(200).json(client);
-}); 
+});
 
-export default clientRouter; 
+export default clientRouter;  

@@ -2,7 +2,7 @@ import ClientDTO  from '../../modules/clients/infra/entities';
 import mongoose from 'mongoose';
 
 
-const clientSchema = new mongoose.Schema<ClientDTO>({
+const schema = new mongoose.Schema<ClientDTO>({
   username: {
     type: String,
     lowercase: true,
@@ -16,9 +16,11 @@ const clientSchema = new mongoose.Schema<ClientDTO>({
   },
   phone: {
     type: String,
+    required: false,
   },
   cep: {
     type: String,
+    required: false,
   },
   createAt: {
     type: Date,
@@ -26,4 +28,6 @@ const clientSchema = new mongoose.Schema<ClientDTO>({
   },
   updateAt: {},
 });
-export default mongoose.model('Client', clientSchema);
+
+const ClientSchame = mongoose.model('Clients', schema);
+export default ClientSchame;
