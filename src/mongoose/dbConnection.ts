@@ -10,6 +10,4 @@ function dbConnection() {
   db.once('open', () => console.log('connected to database'));
 }
 
-export default dbConnection;
-
-
+export default dbConnection;   

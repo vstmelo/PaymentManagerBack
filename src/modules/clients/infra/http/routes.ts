@@ -1,21 +1,14 @@
 import express, { Request, Response } from 'express';
-import { BadRequest } from '../../../../shared/errors/BadRequest';
 import ClientRepository from '../../../../modules/clients/repositories/client-repository';
-import ClientController from '../../useCases/create';
+import { createController, listController } from '../../../../modules/clients/useCases';
+
 
 const clientRouter = express.Router();
 const clientRepository = new ClientRepository();
-const clientController = new ClientController();
 
-clientRouter.post('/',clientController.handle );
+clientRouter.post('/', (req, res) => { return createController.handle(req, res) });
 
-clientRouter.get('/', async (request: Request, response: Response) => {
-    const all = clientRepository.list();
-    if(!all){
-        throw new BadRequest('Error to list clients');
-    }
-    return response.status(200).json(all);
-});
+clientRouter.get('/', (req, res) => { return listController.handle(req, res) });
 
 clientRouter.get('/:email', async (request: Request, response: Response) => {
     const { email } = request.params;

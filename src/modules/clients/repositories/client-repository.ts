@@ -18,19 +18,21 @@ class ClientRepository implements IClientRepository {
         Object.assign(newClient, { username, email });
         this.client.push(newClient);
     };
-    list(): ClientDTO[] {
-        const all = this.client.find(client => client);
+    list(): ClientDTO | null {
+        const all =  this.client.find(client => client);
+        
         if (!all) {
-            throw new BadRequest('No clients found');
+
+            return null;
         }
-        return this.client;
+        return all;
     };
 
     findByEmail(email: string): ClientDTO | null {
         const client = this.client.find(client => client.email === email);
 
         if (!client) {
-           return null
+            return null
         }
 
         return client;
