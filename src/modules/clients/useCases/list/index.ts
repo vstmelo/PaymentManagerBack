@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { BadRequest } from "../../../../shared/errors/BadRequest";
-import listUseCase from "./list-useCase";
+import ListUseCase from "./list-useCase";
 
 class ListController {
-    constructor(private listUseCase: listUseCase) { }
     async handle(req: Request, res: Response): Promise<Response> {
-        const list = await this.listUseCase.execute(req, res);
+        const listUseCase = container.resolve(ListUseCase)
+        const list = await listUseCase.execute(req, res);
         if (!list || list === null) {
             throw new BadRequest('Error to list clients');
         }

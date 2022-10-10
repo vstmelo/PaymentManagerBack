@@ -37,5 +37,5 @@ class ClientRepository implements IClientRepository {
         return client;
     }
 }
-
+ 
 export default ClientRepository; 

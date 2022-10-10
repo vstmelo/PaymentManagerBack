@@ -1,14 +1,18 @@
 import express, { Request, Response } from 'express';
 import ClientRepository from '../../../../modules/clients/repositories/client-repository';
-import { createController, listController } from '../../../../modules/clients/useCases';
+import ListController from '../../../../modules/clients/useCases/list';
 
+import CreateController from '../../../../modules/clients/useCases/create';
 
 const clientRouter = express.Router();
 const clientRepository = new ClientRepository();
 
-clientRouter.post('/', (req, res) => { return createController.handle(req, res) });
+const createController = new CreateController();
+const listController = new ListController();
 
-clientRouter.get('/', (req, res) => { return listController.handle(req, res) });
+clientRouter.post('/', createController.handle);
+
+clientRouter.get('/', listController.handle);
 
 clientRouter.get('/:email', async (request: Request, response: Response) => {
     const { email } = request.params;
