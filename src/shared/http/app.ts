@@ -1,11 +1,12 @@
 import 'reflect-metadata';
+import clientRouter from '@modules/clients/infra/http/routes';
+import '@shared/container';
 import express from 'express';
-import clientRouter from '../../modules/clients/infra/http/routes';
 import cors from 'cors';
 import { ErrorHandler } from './../middleware/errorHandler';
 import dbConnection from '../../mongoose/dbConnection';
 import 'express-async-errors';
-import '../../shared/container';
+
 dbConnection();
 
 const app = express()
