@@ -1,4 +1,5 @@
-import ClientRespositoryInMemory from "../../repositories/in-memory/clientRepositoryInMemory";
+import { AppError } from "@errors/AppError";
+import ClientRespositoryInMemory from "@modules/clients/repositories/in-memory/clientRepositoryInMemory";
 import CreateUseCase from "./create-useCase";
 
 let createClientUseCase: CreateUseCase;
@@ -12,8 +13,8 @@ describe('Create client', () => {
 
     it('should be able to create a new client', async () => {
         const client = {
-            username: 'teste de criação',
-            email: 'teste@gmail.com'
+            username: 'teste',
+            email: 'test@gmail.com'
         }
         await createClientUseCase.execute({
             username: client.username,
@@ -24,5 +25,22 @@ describe('Create client', () => {
 
         expect(clientCreated).toHaveProperty('id');
 
+    });
+
+    it('should not be able to create a new client', async () => {
+        expect(async () => {
+            const client = {
+                username: 'teste',
+                email: 'test@gmail.com'
+            }
+            await createClientUseCase.execute({
+                username: client.username,
+                email: client.email
+            });
+            await createClientUseCase.execute({
+                username: client.username,
+                email: client.email
+            });
+        }).rejects.toBeInstanceOf(AppError);
     });
 });

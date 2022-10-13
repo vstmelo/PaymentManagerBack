@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BadRequest } from '../../../../shared/errors/BadRequest';
+import { BadRequest } from '@errors/BadRequest';
 import CreateUseCase from './create-useCase';
 import { container } from 'tsyringe';
 class CreateController {

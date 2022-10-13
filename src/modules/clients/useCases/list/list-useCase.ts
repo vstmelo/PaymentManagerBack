@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import IClientRepository from "../../../../modules/clients/repositories/IClient-repositoy";
+import IClientRepository from "@modules/clients/repositories/IClient-repositoy";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

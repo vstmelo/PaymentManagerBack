@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev  --transpile-only --watch node_modules src/shared/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "test": "jest"
   }
 }

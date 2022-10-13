@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { BadRequest } from "../../../../shared/errors/BadRequest";
+import { BadRequest } from "@errors/BadRequest";
 import ListUseCase from "./list-useCase";
 
 class ListController {

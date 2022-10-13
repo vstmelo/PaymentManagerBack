@@ -1,5 +1,3 @@
-import { BadRequest } from "../../../shared/errors/BadRequest";
-import { NotFound } from "../../../shared/errors/NotFound";
 import ClientDTO from "../infra/entities";
 import clientSchema from "../../../mongoose/schemas/Client";
 import IClientRepository from "./IClient-repositoy";
