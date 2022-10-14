@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import ClientRepository from '@modules/clients/repositories/client-repository';
+import ClientRepository from '@modules/clients/infra/repositories/client-repository';
 import ListController from '@modules/clients/useCases/list';
 
 import CreateController from '@modules/clients/useCases/create';
@@ -16,7 +16,6 @@ clientRouter.get('/', listController.handle);
 
 clientRouter.get('/:email', async (request: Request, response: Response) => {
     const { email } = request.params;
-    console.log(email)
     const client = clientRepository.findByEmail(email);
     return response.status(200).json(client);
 });

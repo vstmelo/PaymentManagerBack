@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { AppError } from '../errors/AppError'
+import { AppError } from '../../../errors/AppError'
 
 export async function ErrorHandler(err: Error, _: Request, res: Response, next: NextFunction) {
     try {

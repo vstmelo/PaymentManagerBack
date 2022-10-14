@@ -1,6 +1,6 @@
-import ClientDTO from "../infra/entities";
-import clientSchema from "../../../mongoose/schemas/Client";
-import IClientRepository from "./IClient-repositoy";
+import ClientDTO from "../dto";
+import clientSchema from "../mongoose/schemas/Client";
+import IClientRepository from "../../repositories/IClient-repositoy";
 
 
 class ClientRepository implements IClientRepository {
