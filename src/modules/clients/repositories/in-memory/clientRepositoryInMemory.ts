@@ -21,7 +21,7 @@ class ClientRespositoryInMemory implements IClientRepository {
         this.clients.push(client);
     };
 
-    async list(): Promise<ClientDTO[] | null> {
+    async list(): Promise<ClientDTO[]> {
         const all = this.clients;
         return all;
     }
