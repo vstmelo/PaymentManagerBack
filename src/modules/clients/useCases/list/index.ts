@@ -6,10 +6,12 @@ import ListUseCase from "./list-useCase";
 class ListController {
     async handle(req: Request, res: Response): Promise<Response> {
         const listUseCase = container.resolve(ListUseCase)
-        const list = await listUseCase.execute(req, res);
+        const list = await listUseCase.execute();
+
         if (!list || list === null) {
             throw new BadRequest('Error to list clients');
         }
+        console.log(list)
         return res.status(200).json(list);
 
     }

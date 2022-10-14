@@ -1,8 +1,8 @@
-import Client from "../infra/dto";
+import IClient from "../infra/dto";
 
 interface IClientRepository {
-    create({ username, email }: Client): void;
-    findByEmail(email: string): Promise<Client | null>;
-    list(): Promise<Client[] | null>;
+    create({ username, email }: IClient): void;
+    findByEmail(email: string): Promise<IClient | null>;
+    list(): Promise<IClient[]>;
 }
 export default IClientRepository;
