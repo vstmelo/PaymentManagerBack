@@ -1,4 +1,4 @@
-import ClientDTO from "../../infra/entities"
+import ClientDTO from "../../infra/dto"
 import IClientRepository from "../../repositories/IClient-repositoy"
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@errors/AppError";

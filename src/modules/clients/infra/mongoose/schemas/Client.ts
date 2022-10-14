@@ -1,4 +1,4 @@
-import ClientDTO from '@modules/clients/infra/entities';
+import ClientDTO from '@modules/clients/infra/dto';
 import mongoose from 'mongoose';
 
 

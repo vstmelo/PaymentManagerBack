@@ -1,5 +1,5 @@
-import ClientSchame from "../../../../mongoose/schemas/Client";
-import ClientDTO from "@modules/clients/infra/entities";
+import ClientSchame from "../../infra/mongoose/schemas/Client";
+import ClientDTO from "@modules/clients/infra/dto";
 import IClientRepository from "../IClient-repositoy";
 
 class ClientRespositoryInMemory implements IClientRepository {

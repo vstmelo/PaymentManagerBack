@@ -1,4 +1,4 @@
-import Client from "../infra/entities";
+import Client from "../infra/dto";
 
 interface IClientRepository {
     create({ username, email }: Client): void;

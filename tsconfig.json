@@ -23,5 +23,13 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "skipLibCheck": true
-}
+},
+"exclude": [
+  "node_modules",
+  "dist"
+],
+"include": [
+  "src/**/*",
+  "jest.config.js"
+]
 }
