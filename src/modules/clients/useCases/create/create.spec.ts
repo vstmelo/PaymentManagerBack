@@ -4,24 +4,32 @@ import CreateUseCase from "./create-useCase";
 
 let sut: CreateUseCase;
 let clientRepositoryInMemory: ClientRespositoryInMemory;
-
 describe('Create client', () => {
-    const clientRepositoryInMemory = new ClientRespositoryInMemory();
-    const sut = new CreateUseCase(clientRepositoryInMemory);
-    const client = {
-        username: 'teste',
-        email: 'test@gmail.com'
-    }
-    it('should be able to create a new client', async () => {
+    beforeEach(() => {
+        clientRepositoryInMemory = new ClientRespositoryInMemory();
+        sut = new CreateUseCase(clientRepositoryInMemory);
+    });
 
-        expect(await sut.execute((client))).resolves
+    it('should be able to create a new client', async () => {
+        const client = {
+            username: 'teste',
+            email: 'test@gmail.com'
+        }
+
+        await sut.execute(client);
+
+        const clientCreated = await clientRepositoryInMemory.findByEmail(client.email);
+        expect(clientCreated).toHaveProperty("id");
     });
 
     it('should not be able to create a new client', async () => {
-        const client = {
-            username: 'testee',
-            email: 'test@gmail.com'
-        };
-        expect(sut.execute(client)).rejects.toThrow(new BadRequest('Client already exists!'));
+        expect(async () => {
+            const client = {
+                username: 'testee',
+                email: 'test@gmail.com'
+            };
+            await sut.execute(client);
+            await sut.execute(client);
+        }).rejects.toThrow(new BadRequest('Client already exists!'));
     });
 });
