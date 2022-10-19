@@ -1,9 +1,8 @@
 import CreateController from '@modules/user/useCases/create';
 import express from 'express';
-import UserRepository from '../repositories';
+import UserRepository from '../repositories/user-repository';
 
 const userRouter = express.Router();
-const userRepository = new UserRepository();
 const createController = new CreateController();
 
 userRouter.post('/', createController.handle);

@@ -11,7 +11,6 @@ class ListController {
         if (!list || list === null) {
             throw new BadRequest('Error to list clients');
         }
-        console.log(list)
         return res.status(200).json(list);
 
     }

@@ -1,4 +1,4 @@
-import UserRepository from '@modules/user/infra/repositories';
+import UserRepository from '@modules/user/infra/repositories/user-repository';
 import IUserRepository from '@modules/user/repositories/IUser-repository';
 import {container} from 'tsyringe';
 
