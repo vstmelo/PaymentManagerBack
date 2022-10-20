@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { BadRequest } from '@errors/BadRequest';
 import ClientUseCase from './create-useCase';
 import { container } from 'tsyringe';
+
 class CreateController {
 
   async handle(req: Request, res: Response) {

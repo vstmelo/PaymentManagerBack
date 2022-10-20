@@ -3,7 +3,7 @@ import IUserDTO from '@modules/user/infra/dto';
 import UserSchema from '../mongoose/schemas';
 
 class UserRepository implements IUserRepository {
-  private user: IUserDTO[] = [];
+  private user: IUserDTO[] = [{email: '', password: ''}];
   constructor() {
     this.user = [];
   }

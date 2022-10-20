@@ -31,4 +31,5 @@ const schema = new mongoose.Schema<ClientDTO>({
 
 const ClientSchema = mongoose.model('Clients', schema);
 
+
 export default ClientSchema;

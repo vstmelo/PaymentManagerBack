@@ -1,6 +1,6 @@
 import ClientDTO from '../dto';
-import clientSchema from '../mongoose/schemas/Client';
 import IClientRepository from '../../repositories/IClient-repositoy';
+import ClientSchema from '../mongoose/schemas/Client';
 
 class ClientRepository implements IClientRepository {
   private client: ClientDTO[] = [];
@@ -10,7 +10,7 @@ class ClientRepository implements IClientRepository {
   }
 
   create = async ({ username, email }: ClientDTO): Promise<void> => {
-    const newClient = new clientSchema();
+    const newClient = new ClientSchema();
     Object.assign(newClient, { username, email });
     this.client.push(newClient);
   };

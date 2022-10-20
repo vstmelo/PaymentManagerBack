@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import ClientRepository from '@modules/clients/infra/repositories/client-repository';
-import ListController from '@modules/clients/useCases/list';
+import ListController from '@modules/clients/useCases/list/list-controller';
 
-import CreateController from '@modules/clients/useCases/create';
+import CreateController from '@modules/clients/useCases/create/create-controller';
 
 const clientRouter = express.Router();
 const clientRepository = new ClientRepository();
