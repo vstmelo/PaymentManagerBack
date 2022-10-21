@@ -11,6 +11,7 @@ class CreateController {
     const createUseCase = container.resolve(ClientUseCase);
 
     const client = await createUseCase.execute({ username, email });
+    
     if (!client) {
       throw new BadRequest('Error to create client');
     }
