@@ -1,13 +1,18 @@
-import mongoose from 'mongoose';
 import 'dotenv/config';
+import { MongoClient } from 'mongodb';
 
-function dbConnection() {
-  mongoose.connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@payment.ge8sah8.mongodb.net/?retryWrites=true&w=majority`,
-  );
-  const db = mongoose.connection;
-  db.on('error', error => console.log(error));
-  db.once('open', () => console.log('connected to database'));
+// Connection URL
+export const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@payment.og4gzfq.mongodb.net/?retryWrites=true&w=majority`;
+const client = new MongoClient(url);
+
+export async function main() {
+  // Use connect method to connect to the server
+  await client.connect();
+  console.log('Connected successfully to server');
+  return 'done.';
 }
 
-export default dbConnection;   
+main()
+  .then(console.log)
+  .catch(console.error)
+  .finally(() => client.close());

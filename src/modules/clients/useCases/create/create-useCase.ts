@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "@errors/AppError";
 
 @injectable()
-class CreateUseCase {
+class ClientUseCase {
     constructor(
         @inject('ClientRepository')
         private clientRepository: IClientRepository
@@ -22,4 +22,4 @@ class CreateUseCase {
     }
 }
 
-export default CreateUseCase;
+export default ClientUseCase;

@@ -29,5 +29,7 @@ const schema = new mongoose.Schema<ClientDTO>({
   updateAt: {},
 });
 
-const ClientSchame = mongoose.model('Clients', schema);
-export default ClientSchame;
+const ClientSchema = mongoose.model('Clients', schema);
+
+
+export default ClientSchema;
