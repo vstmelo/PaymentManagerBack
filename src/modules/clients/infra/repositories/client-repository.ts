@@ -4,7 +4,6 @@ import ClientSchema from '../mongoose/schemas/Client';
 import getCollection from '../mongoose/request/collection';
 
 class ClientRepository implements IClientRepository {
-
   private static INSTANCE: ClientRepository;
 
   public static getInstance(): ClientRepository {
@@ -25,12 +24,12 @@ class ClientRepository implements IClientRepository {
   };
 
   list = async (): Promise<any> => {
-    const all = this.repository.find();
+    const all = this.repository.find({}).toArray();
     return all;
   };
 
   findByEmail = async (email: string): Promise<any | null> => {
-    const client = this.repository.find({ email: email });
+    const client = this.repository.findOne({ email: email });
 
     if (!client) {
       return null;

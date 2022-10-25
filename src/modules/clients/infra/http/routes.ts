@@ -3,21 +3,18 @@ import ClientRepository from '@modules/clients/infra/repositories/client-reposit
 import ListController from '@modules/clients/useCases/list/list-controller';
 
 import CreateController from '@modules/clients/useCases/create/create-controller';
+import FindController from '@modules/clients/useCases/find-by-email/find-controller';
 
 const clientRouter = express.Router();
-const clientRepository = new ClientRepository();
 
 const createController = new CreateController();
 const listController = new ListController();
+const findController = new FindController();
 
 clientRouter.post('/', createController.handle);
 
 clientRouter.get('/', listController.handle);
 
-clientRouter.get('/:email', async (request: Request, response: Response) => {
-    const { email } = request.params;
-    const client = clientRepository.findByEmail(email);
-    return response.status(200).json(client);
-});
+clientRouter.get('/:email', findController.handle);
 
 export default clientRouter;  

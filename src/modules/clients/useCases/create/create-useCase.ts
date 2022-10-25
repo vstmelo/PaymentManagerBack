@@ -1,4 +1,4 @@
-import ClientDTO from "../../infra/dto"
+import ClientDTO from "@modules/clients/infra/dto"
 import IClientRepository from "../../repositories/IClient-repositoy"
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@errors/AppError";
@@ -13,7 +13,7 @@ class ClientUseCase {
     async execute({ username, email }: ClientDTO): Promise<string> {
         const clientAlreadyExists = await this.clientRepository.findByEmail(email)
 
-        if (clientAlreadyExists) {
+        if (clientAlreadyExists?.email === email) {
             throw new AppError("Client already exists!", 400)
         }
 
